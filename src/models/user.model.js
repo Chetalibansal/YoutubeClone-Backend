@@ -49,7 +49,7 @@ const userSchema = new Schema(
 // we won't use arrow function in middleware hooks because we need to access the `this` context
 //and also its time taking so we use async-await in the middleware hooks
 userSchema.pre("save", async function (next) {
-    if(!this.isModified("Password") ) return next() //if password is not modified, then skip hashing
+    if(!this.isModified("password") ) return next() //if password is not modified, then skip hashing
 
     this.password =await bcrypt.hash(this.password, 10)
     next()
